@@ -21,17 +21,18 @@ function spec.config()
       "ruff-lsp",
       "stylua",
       "zls",
+      "asm-lsp",
     },
 
     auto_update = true,
 
     run_on_start = true,
-    start_delay = 30000,
+    start_delay = 10000,
 
     integrations = {
       ["mason-lspconfig"] = true,
-      -- ["mason-null-ls"] = true,
-      -- ["mason-nvim-dap"] = true,
+      ["mason-null-ls"] = true,
+      ["mason-nvim-dap"] = true,
     },
   })
 end
