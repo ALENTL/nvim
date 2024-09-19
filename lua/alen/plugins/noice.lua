@@ -3,8 +3,6 @@ local M = {
   event = "VeryLazy",
 }
 
-local opts = {}
-
 M.dependencies = {
   "MunifTanjim/nui.nvim",
   "rcarriga/nvim-notify",
