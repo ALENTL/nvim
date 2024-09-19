@@ -110,6 +110,15 @@ return {
     })
 
     mason_lspconfig.setup_handlers({
+      ["clangd"] = function()
+        lspconfig["clangd"].setup({
+          capabilities = capabilities,
+          handlers = handlers,
+          on_attach = function(client, bufnr)
+            vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+          end,
+        })
+      end,
       ["svelte"] = function()
         -- configure svelte server
         lspconfig["svelte"].setup({
@@ -186,16 +195,6 @@ return {
           },
         })
       end,
-      ["clangd"] = function()
-        lspconfig["clangd"].setup({
-          handlers = handlers,
-          on_attach = function(client, bufnr)
-            vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-          end,
-          -- capabilities = vim.lsp.protocol.make_client_capabilities(),
-          capabilities = capabilities,
-        })
-      end,
       ["pyright"] = function()
         lspconfig["pyright"].setup({
           handlers = handlers,
@@ -266,6 +265,29 @@ return {
         lspconfig["zls"].setup({
           handlers = handlers,
           capabilities = capabilities,
+          on_attach = function(client, bufnr)
+            vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+          end,
+        })
+      end,
+      ["asm_lsp"] = function()
+        lspconfig["asm_lsp"].setup({
+          handlers = handlers,
+          capabilities = capabilities,
+          on_attach = function(client, bufnr)
+            vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+          end,
+        })
+      end,
+      ["serve_d"] = function()
+        lspconfig["serve_d"].setup({
+          handlers = handlers,
+          capabilities = capabilities,
+          settings = {
+            dfmt = {
+              braceStyle = "stroustrup",
+            },
+          },
           on_attach = function(client, bufnr)
             vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
           end,
