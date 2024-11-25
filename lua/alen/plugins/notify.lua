@@ -3,11 +3,11 @@ local M = {
 }
 
 M.config = function()
-  vim.notify = require("notify")
-
-  vim.notify.setup({
-    timeout = 1000,
+  require("notify").setup({
+    background_color = "FloatShadow",
+    timeout = 3000,
   })
+  vim.notify = require("notify")
 end
 
 return M

@@ -23,7 +23,7 @@ opt.smartcase = true
 opt.clipboard = "unnamed,unnamedplus"
 -- Scrolloff and cmdheight
 opt.cmdheight = 0
-opt.scrolloff = 0
+opt.scrolloff = 999
 
 -- Setting completeopt
 opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
@@ -42,9 +42,6 @@ opt.background = "dark"
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
-
--- scrolloff
-opt.scrolloff = 999
 
 -- enable mouse
 opt.mouse = "a"

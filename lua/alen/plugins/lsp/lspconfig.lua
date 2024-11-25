@@ -70,12 +70,14 @@ return {
 
         opts.desc = "Go to previous diagnostic"
         keymap.set("n", "[d", function()
-          vim.diagnostic.jump({ count = -1, float = true })
+          --vim.diagnostic.jump({ count = -1, float = true })
+          vim.diagnostic.goto_prev()
         end, opts)
 
         opts.desc = "Go to next diagnostic"
         vim.keymap.set("n", "]d", function()
-          vim.diagnostic.jump({ count = 1, float = true })
+          vim.diagnostic.goto_next()
+          -- vim.diagnostic.config({ jump = { float = true } })
         end, opts)
 
         opts.desc = "Show documentation for what is under cursor"
@@ -154,13 +156,23 @@ return {
           capabilities = capabilities,
           filetypes = {
             "html",
+            "pug",
             "typescriptreact",
+            "javascript",
             "javascriptreact",
+            "vue",
             "css",
             "sass",
             "scss",
             "less",
             "svelte",
+          },
+          init_options = {
+            html = {
+              options = {
+                ["bem.enabled"] = true,
+              },
+            },
           },
         })
       end,
@@ -212,11 +224,11 @@ return {
           },
         })
       end,
-      ["ruff_lsp"] = function()
-        lspconfig["ruff_lsp"].setup({
+      ["ruff"] = function()
+        lspconfig["ruff"].setup({
           handlers = handlers,
           on_attach = function(client, bufnr)
-            if client.name == "ruff_lsp" then
+            if client.name == "ruff" then
               client.server_capabilities.hoverProvider = false
               vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
             end

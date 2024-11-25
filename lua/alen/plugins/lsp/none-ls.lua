@@ -20,6 +20,8 @@ M.config = function()
           "--style=(AllowShortFunctionsOnASingleLine: false)",
         },
       }),
+      null_ls.builtins.diagnostics.djlint,
+      null_ls.builtins.formatting.djlint,
     },
 
     on_attach = function(client, bufnr)
